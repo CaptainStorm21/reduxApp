@@ -127,7 +127,8 @@ class Cart extends React.Component{
 
 function mapStateToProps(state) {
   return{
-    cart: state.cart.cart
+    cart: state.cart.cart,
+    totalAmount: state.cart.cart.totalAmount
   }
 }
 
