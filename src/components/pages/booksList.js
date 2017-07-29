@@ -16,6 +16,9 @@ class BooksList extends React.Component {
       <div>
         {BooksList}
       </div>
+      <div>
+        {BooksList}
+      </div>
     )
   }
 }
