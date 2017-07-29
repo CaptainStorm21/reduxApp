@@ -20,20 +20,9 @@ render(
   </Provider>, document.getElementById('app')
 );
 
-store.dispatch(postNewBooks(
-  [{
-    id: 1,
-    title: 'book title no. 1',
-    description: 'a description of a fancy book',
-    price: 3.97
-  },
-  {
-    id: 2,
-    title: 'book title no. 2',
-    description: 'a description of a lame book',
-    price: 9.28
-  }]
-));
+// store.dispatch(postNewBooks(
+
+// ));
 
 store.dispatch(updateBooks({
   id: 2,
