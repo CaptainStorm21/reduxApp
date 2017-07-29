@@ -93,14 +93,14 @@ class Cart extends React.Component{
         {cartItemsList}
         <Row>
           <Col xs={12}>
-            <h6>Total Items: {this.props.totalQty}</h6>
+            <h6>Items: {this.props.totalQty}</h6>
             <h6>Total Amount: ${this.props.totalAmount}</h6>
             <Button onClick={this.open.bind(this)} bsStyle="success" bsSize="small">
               PROCEED TO CHECKOUT
             </Button>
             <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
               <Modal.Header closeButton>
-                <Modal.Title>CHECKOUT</Modal.Title>
+                <Modal.Title>Confirm Purchase</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <h6>Current Items: </h6>
@@ -108,7 +108,7 @@ class Cart extends React.Component{
               <Modal.Footer>
                 <Row>
                   <Col xs={6}>
-                    Total: $
+                    <h6>Total Amount: ${this.props.totalAmount}</h6>
                   </Col>
                   <Button onClick={this.close.bind(this)}>
                     Close
