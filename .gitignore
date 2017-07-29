@@ -58,4 +58,4 @@ typings/
 .env
 
 # webpack bundle
-/public/bundle.*
+public/bundle.js
