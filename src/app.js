@@ -10,8 +10,7 @@ import {postNewBooks, deleteBooks, updateBooks} from './actions/booksActions';
 import {addToCart} from './actions/cartActions';
 import BooksList from './components/pages/booksList.js';
 import reducers from './reducers/index';
- 
-// STEP 1 create store
+
 const middleware = applyMiddleware(logger);
 const store = createStore(reducers, middleware);
 
