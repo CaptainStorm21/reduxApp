@@ -8,5 +8,11 @@ export function cartReducers(state={cart:[]}, action) {
     return {cart:[...state, ...action.payload]};
     break;
   }
+
+  switch(action.type){
+    case "DELETE_FROM_CART":
+    return {cart:[...state, ...action.payload]};
+    break;
+  }
   return state;
 }
