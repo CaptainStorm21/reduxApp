@@ -33,20 +33,12 @@ store.dispatch(postNewBooks(
     title: 'book title no. 2',
     description: 'a description of a lame book',
     price: 9.28
-  },
-  {
-    id: 3,
-    title: 'Baby Island',
-    description: 'It\'s my Favorite Book Ever',
-    price: 1.29
   }]
 ));
 
 store.dispatch(updateBooks({
   id: 2,
   title: 'NEW title for book no.2'
-}))
+}));
 
-store.dispatch(deleteBooks({id: 2}));
-
-store.dispatch(addToCart([{id: 1 }]));
+store.dispatch(addToCart([{id: 3 }]));
