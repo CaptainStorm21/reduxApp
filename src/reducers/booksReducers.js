@@ -4,14 +4,14 @@ export function booksReducers(state={
   books:
     [{
       id: 1,
-      title: 'book title no. 1',
-      description: 'a description of a fancy book',
+      title: 'Sub-par Book',
+      description: '\"The best medium book around\"',
       price: 23.97
     },
     {
       id: 2,
-      title: 'book title no. 2',
-      description: 'a description of a lame book',
+      title: 'Great Book',
+      description: '\"I loved this book\"',
       price: 8.28
     }]
   }, action) {

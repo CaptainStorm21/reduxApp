@@ -19,14 +19,3 @@ render(
     <BooksList />
   </Provider>, document.getElementById('app')
 );
-
-// store.dispatch(postNewBooks(
-
-// ));
-
-store.dispatch(updateBooks({
-  id: 2,
-  title: 'NEW title for book no.2'
-}));
-
-store.dispatch(addToCart([{id: 3 }]));
