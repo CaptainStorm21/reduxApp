@@ -1,7 +1,7 @@
 "use strict"
 import React from 'react';
 import {connect} from 'react-redux';
-import {Panel, Col, Row, Well, Button, ButtonGroup, Label} from 'react-bootstrap';
+import {Panel, Col, Row, Well, Button, ButtonGroup, Label, Modal} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {deleteFromCart, updateCart} from '../../actions/cartActions'
 
@@ -32,6 +32,21 @@ class Cart extends React.Component{
 
   onIncrement(_id) {
     this.props.updateCart(_id, 1);
+  }
+
+  constructor() {
+    super();
+    this.state = {
+      showModal: false
+    }
+  }
+
+  open() {
+    this.setState({showModal: true});
+  }
+
+  close() {
+    this.setState({showModal: false});
   }
 
   render() {
@@ -79,9 +94,27 @@ class Cart extends React.Component{
         <Row>
           <Col xs={12}>
             <h6>Total amount:</h6>
-            <Button bsStyle="success" bsSize="small">
+            <Button onClick={this.open.bind(this)} bsStyle="success" bsSize="small">
               PROCEED TO CHECKOUT
             </Button>
+            <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+              <Modal.Header closeButton>
+                <Modal.Title>CHECKOUT</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <h6>Total Amount: </h6>
+              </Modal.Body>
+              <Modal.Footer>
+                <Row>
+                  <Button onClick={this.close.bind(this)}>
+                    Close
+                  </Button>
+                  <Button bsStyle="success" style={{marginRight:'14px'}}>
+                    BUY
+                  </Button>
+                </Row>
+              </Modal.Footer>
+            </Modal>
           </Col>
         </Row>
       </Panel>
