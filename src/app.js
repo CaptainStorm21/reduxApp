@@ -1,32 +1,19 @@
 "use strict"
 
-// import the store functions
-import {applyMiddleware, createStore} from 'redux';
-
 import React from 'react';
-
+import logger from 'redux-logger';
+import {applyMiddleware, createStore} from 'redux';
 import {render} from 'react-dom';
-
 import {Provider} from 'react-redux';
 
-// import the redux-logger
-import logger from 'redux-logger';
-
-// import the reducers
-import reducers from './reducers/index';
-
-// CART ACTIONS
-import {addToCart} from './actions/cartActions';
-
-// BOOK ACTIONS
 import {postNewBooks, deleteBooks, updateBooks} from './actions/booksActions';
-
+import {addToCart} from './actions/cartActions';
+import BooksList from './components/pages/booksList.js';
+import reducers from './reducers/index';
  
 // STEP 1 create store
 const middleware = applyMiddleware(logger);
 const store = createStore(reducers, middleware);
-
-import BooksList from './components/pages/booksList.js';
 
 render(
   <Provider store={store}>
