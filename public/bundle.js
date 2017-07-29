@@ -23668,10 +23668,82 @@ module.exports = ReactDOMInvalidARIAHook;
 
 /***/ }),
 /* 212 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-throw new Error("Module build failed: SyntaxError: Adjacent JSX elements must be wrapped in an enclosing tag (19:6)\n\n\u001b[0m \u001b[90m 17 | \u001b[39m        {\u001b[33mBooksList\u001b[39m}\n \u001b[90m 18 | \u001b[39m      \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 19 | \u001b[39m      \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m    | \u001b[39m      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 20 | \u001b[39m        {\u001b[33mBooksList\u001b[39m}\n \u001b[90m 21 | \u001b[39m      \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 22 | \u001b[39m    )\u001b[0m\n");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(110);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(219);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var BooksList = function (_React$Component) {
+  _inherits(BooksList, _React$Component);
+
+  function BooksList() {
+    _classCallCheck(this, BooksList);
+
+    return _possibleConstructorReturn(this, (BooksList.__proto__ || Object.getPrototypeOf(BooksList)).apply(this, arguments));
+  }
+
+  _createClass(BooksList, [{
+    key: 'render',
+    value: function render() {
+      var BooksList = this.props.books.map(function (booksArr) {
+        return _react2.default.createElement(
+          'div',
+          { key: booksArr.id },
+          _react2.default.createElement(
+            'h2',
+            null,
+            booksArr.title
+          ),
+          _react2.default.createElement(
+            'h2',
+            null,
+            booksArr.description
+          ),
+          _react2.default.createElement(
+            'h2',
+            null,
+            booksArr.price
+          )
+        );
+      });
+      return _react2.default.createElement(
+        'div',
+        null,
+        BooksList
+      );
+    }
+  }]);
+
+  return BooksList;
+}(_react2.default.Component);
+
+function mapStateToProps(state) {
+  return {
+    books: state.books.books
+  };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(BooksList);
 
 /***/ }),
 /* 213 */
