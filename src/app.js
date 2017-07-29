@@ -32,7 +32,13 @@ store.dispatch(postNewBooks(
     id: 2,
     title: 'book title no. 2',
     description: 'a description of a lame book',
-    price: 928
+    price: 9.28
+  },
+  {
+    id: 3,
+    title: 'Baby Island',
+    description: 'It\'s my Favorite Book Ever',
+    price: 1.29
   }]
 ));
 
