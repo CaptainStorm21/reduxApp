@@ -2,7 +2,7 @@ import React from 'react';
 import {Row, Col, Well, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {addToCart} from '../../actions/cartActions';
+import {addToCart, updateCart} from '../../actions/cartActions';
 
 
 class BookItem extends React.Component {
@@ -12,10 +12,32 @@ class BookItem extends React.Component {
       _id: this.props._id,
       title:this.props.title,
       description:this.props.description,
-      price:this.props.price
+      price:this.props.price,
+      quantity:1
     }];
 
-    this.props.addToCart(book);
+    // check if cart is not empty
+    if (this.props.cart.length > 0) {
+      let _id = this.props._id;
+      let cartIndex = this.props.cart.findIndex(function(cart) {
+        // check if that id is already i the cart
+        return cart._id === _id;
+      })
+
+        // if we return -1 then the cart doens't have that id yet
+      if (cartIndex === -1) {
+        // add the book
+        this.props.addToCart(book);
+      } else {
+        // else the book is already in the cart
+        // so we update quantity by calling updateCart function
+        this.props.updateCart(_id, 1);
+      }
+
+    } else {
+      // cart is empty, add the bok
+      this.props.addToCart(book);
+    }
   }
 
   render() {
@@ -42,7 +64,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-    addToCart: addToCart
+    addToCart: addToCart,
+    updateCart: updateCart
   }, dispatch)
 }
 
