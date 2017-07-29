@@ -102,10 +102,13 @@ class Cart extends React.Component{
                 <Modal.Title>CHECKOUT</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <h6>Total Amount: </h6>
+                <h6>Current Items: </h6>
               </Modal.Body>
               <Modal.Footer>
                 <Row>
+                  <Col xs={6}>
+                    Total: $
+                  </Col>
                   <Button onClick={this.close.bind(this)}>
                     Close
                   </Button>
