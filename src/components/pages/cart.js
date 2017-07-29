@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Panel, Col, Row, Well, Button, ButtonGroup, Label} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
-import {deleteFromCart} from '../../actions/cartActions'
+import {deleteFromCart, updateCart} from '../../actions/cartActions'
 
 class Cart extends React.Component{
 
@@ -20,6 +20,18 @@ class Cart extends React.Component{
     ...currentBookToDelete.slice(indexToDelete + 1)];
 
     this.props.deleteFromCart(cartAfterDelete);
+  }
+
+  onDecrement(_id, quantity) {
+    if(quantity > 1) {
+      this.props.updateCart(_id, -1);
+    } else {
+      return;
+    }
+  }
+
+  onIncrement(_id) {
+    this.props.updateCart(_id, 1);
   }
 
   render() {
@@ -51,8 +63,8 @@ class Cart extends React.Component{
             </Col>
             <Col xs={6} sm={4}>
               <ButtonGroup style={{minWidth: '300px'}}>
-                <Button bsStyle="default" bsSize="small">-</Button>
-                <Button bsStyle="default" bsSize="small">+</Button>
+                <Button onClick={this.onDecrement.bind(this, cartArr._id, cartArr.quantity)} bsStyle="default" bsSize="small">-</Button>
+                <Button onClick={this.onIncrement.bind(this, cartArr._id)} bsStyle="default" bsSize="small">+</Button>
                 <span>     </span>
                 <Button onClick={this.onDelete.bind(this, cartArr._id)} bsStyle="danger" bsSize="small">Delete</Button>
               </ButtonGroup>
@@ -64,6 +76,14 @@ class Cart extends React.Component{
     return (
       <Panel header="Cart" bsStyle="primary">
         {cartItemsList}
+        <Row>
+          <Col xs={12}>
+            <h6>Total amount:</h6>
+            <Button bsStyle="success" bsSize="small">
+              PROCEED TO CHECKOUT
+            </Button>
+          </Col>
+        </Row>
       </Panel>
     )
   }
@@ -77,7 +97,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-    deleteFromCart: deleteFromCart
+    deleteFromCart: deleteFromCart,
+    updateCart: updateCart
   }, dispatch)
 }
 
