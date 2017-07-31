@@ -1,5 +1,4 @@
 "use strict"
-
 import React from 'react';
 import {Well, Panel, FormGroup, FormControl, ControlLabel, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
