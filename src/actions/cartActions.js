@@ -1,4 +1,5 @@
 "use strict"
+import axios from 'axios';
 
 export function updateCart(_id, unit, cart) {
   const currentBookToUpdate = cart;
@@ -22,10 +23,15 @@ export function updateCart(_id, unit, cart) {
   }
 }
 
-export function addToCart(book) {
-  return {
-    type: "ADD_TO_CART",
-    payload: book
+export function addToCart(cart) {
+  return function(dispatch) {
+    axios.post("/api/cart", cart)
+      .then(function(response) {
+        dispatch({type:"ADD_TO_CART", payload:response.data})
+      })
+      .catch(function(err) {
+        dispatch({type:"ADD_TO_CART_REJECTED", msg:'error when adding to cart'})
+      })
   }
 }
 
