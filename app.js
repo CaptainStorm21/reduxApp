@@ -40,6 +40,16 @@ app.post('/books', function (req, res) {
   })
 });
 
+// GET
+app.get('/books', function (req, res) {
+  Books.find(function(err, books) {
+    if(err) {
+      throw err;
+    }
+    res.json(books);
+  })
+});
+
 // END APIS
 
 app.get('*', function(req, res){
