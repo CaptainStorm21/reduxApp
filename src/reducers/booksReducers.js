@@ -1,20 +1,5 @@
 // BOOKS REDUCERS
-export function booksReducers(state={
-  
-  books:
-    [{
-      _id: 1,
-      title: 'Sub-par Book',
-      description: '\"The best medium book around\"',
-      price: 23.97
-    },
-    {
-      _id: 2,
-      title: 'Great Book',
-      description: '\"I loved this book\"',
-      price: 8.28
-    }]
-  }, action) {
+export function booksReducers(state={ books:[] }, action) {
   switch(action.type) {
     
     case "POST_BOOK":
