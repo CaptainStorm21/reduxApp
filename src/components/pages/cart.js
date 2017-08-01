@@ -24,14 +24,14 @@ class Cart extends React.Component{
 
   onDecrement(_id, quantity) {
     if(quantity > 1) {
-      this.props.updateCart(_id, -1);
+      this.props.updateCart(_id, -1, this.props.cart);
     } else {
       return;
     }
   }
 
   onIncrement(_id) {
-    this.props.updateCart(_id, 1);
+    this.props.updateCart(_id, 1, this.props.cart);
   }
 
   constructor() {

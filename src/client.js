@@ -9,7 +9,6 @@ import {applyMiddleware, createStore} from 'redux';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';
 
-
 // actions
 import {postNewBooks, deleteBooks, updateBooks} from './actions/booksActions';
 import {addToCart} from './actions/cartActions';
