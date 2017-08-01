@@ -31,7 +31,6 @@ var Books = require('./models/books.js');
 // POST
 app.post('/books', function (req, res) {
   var book = req.body;
-
   Books.create(book, function(err, books) {
     if(err) {
       throw err;
@@ -49,6 +48,42 @@ app.get('/books', function (req, res) {
     res.json(books);
   })
 });
+
+// DELETE
+app.delete('/books/:_id', function (req, res) {
+  var query = {_id: req.params._id}
+  Books.remove(query, function(err, books) {
+    if(err) {
+      throw err;
+    }
+    res.json(books);
+  })
+})
+
+// UPDATE
+app.put('/books/:_id', function (req, res) {
+  var book = req.body;
+  var query = req.params._id
+  // if the field doens't exist, $set witl set a new field
+  var update = {
+    '$set':{
+      title: book.title,
+      description: book.description,
+      image: book.image,
+      price: book.price
+    }
+  };
+  
+  // returns the updated document by passing 'new' flag
+  var options = {new: true};
+
+  Books.findOneAndUpdate(query, update, options, function (err, books) {
+    if(err) {
+      throw err;
+    }
+    res.json(books);
+  })
+})
 
 // END APIS
 
