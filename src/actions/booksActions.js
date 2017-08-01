@@ -28,11 +28,17 @@ export function getBooks() {
 }
 
 export function deleteBooks(_id) {
-  return {
-    type: "DELETE_BOOK",
-    payload: _id
+  return function(dispatch) {
+    axios.delete("/books/" + _id)
+      .then(function(response) {
+        dispatch({type: "DELETE_BOOK", payload:_id})
+      })
+      .catch(function(err) {
+        dispatch({type: "DELETE_BOOK_REJECTED", payload: "there was and error while deleting a book"});
+      })
   }
 }
+
 
 export function updateBooks(book) {
   return {
