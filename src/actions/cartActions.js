@@ -10,9 +10,9 @@ export function updateCart(_id, unit, cart) {
     }
   )
 
-    const newBookToUpdate = {
-      ...currentBookToUpdate[indexToUpdate],
-      quantity:currentBookToUpdate[indexToUpdate].quantity + unit
+  const newBookToUpdate = {
+    ...currentBookToUpdate[indexToUpdate],
+    quantity:currentBookToUpdate[indexToUpdate].quantity + unit
   }
 
   let cartUpdate = [...currentBookToUpdate.slice(0, indexToUpdate), newBookToUpdate,
@@ -40,8 +40,4 @@ export function deleteFromCart(cart) {
     type: "DELETE_FROM_CART",
     payload: cart
   }
-}
-
-export function getCart(cart) {
-
 }

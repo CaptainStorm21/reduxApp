@@ -1,7 +1,6 @@
 "use strict"
 
 // CART REDUCERS
-
 export function cartReducers(state={cart:[]}, action) {
   switch(action.type){
     case "ADD_TO_CART":
@@ -11,9 +10,7 @@ export function cartReducers(state={cart:[]}, action) {
         totalQty: totals(action.payload).qty
       };
       break;
-  }
 
-  switch(action.type){
     case "DELETE_FROM_CART":
       return {...state, 
         cart:action.payload,
@@ -21,9 +18,7 @@ export function cartReducers(state={cart:[]}, action) {
         totalQty: totals(action.payload).qty
       };
       break;
-  }
 
-  switch(action.type) {
     case "UPDATE_CART":
       return {...state, 
         cart:action.payload,
@@ -31,12 +26,15 @@ export function cartReducers(state={cart:[]}, action) {
         totalQty: totals(action.payload).qty
       }
     break;
+
   }
+
   return state;
 }
 
 // CALCULATE TOTALS
 export function totals(payloadArr) {
+
   const totalAmount = payloadArr.map(function(cartArr) {
     return cartArr.price * cartArr.quantity;
   }).reduce(function(a, b) {

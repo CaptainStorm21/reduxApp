@@ -5,7 +5,7 @@ import {Panel, Col, Row, Well, Button, ButtonGroup, Label, Modal} from 'react-bo
 import {bindActionCreators} from 'redux';
 import {deleteFromCart, updateCart} from '../../actions/cartActions'
 
-class Cart extends React.Component{
+class Cart extends React.Component {
 
   onDelete(_id) {
     const currentBookToDelete = this.props.cart;

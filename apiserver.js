@@ -28,7 +28,6 @@ app.use(session({
 }));
 
 // SAVE SESSIONS
-
 app.post('/cart', function(req, res) {
   var cart = req.body;
   req.session.cart = cart;
@@ -84,7 +83,7 @@ app.delete('/books/:_id', function (req, res) {
 app.put('/books/:_id', function (req, res) {
   var book = req.body;
   var query = req.params._id
-  // if the field doens't exist, $set witl set a new field
+  // if the field doesn't exist, $set will set a new field
   var update = {
     '$set':{
       title: book.title,
