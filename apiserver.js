@@ -22,7 +22,7 @@ db.on('error', console.error.bind(console, '# MongoDB - connection error:'));
 app.use(session({
   secret: 'mySecretString',
   saveUninitialized: false,
-  resave: true,
+  resave: false,
   cookie: {maxAge: 1000 * 60 * 60 * 24 * 2}, // 2 days in ms
   store: new MongoStore({mongooseConnection: db, ttl: 2 * 24 * 60 * 60})
 }));
@@ -43,7 +43,7 @@ app.get('/cart', function(req, res) {
   if(typeof req.session.cart !== 'undefined') {
     res.json(req.session.cart);
   }
-})
+});
 
 var Books = require('./models/books.js');
 
