@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import {findDOMNode} from 'react-dom';
 import axios from 'axios';
 
-import {postNewBooks, deleteBooks} from '../../actions/booksActions';
+import {postNewBooks, deleteBooks, getBooks} from '../../actions/booksActions';
 
 class BooksForm extends React.Component {
   constructor() {
@@ -17,6 +17,7 @@ class BooksForm extends React.Component {
     }
   }
   componentDidMount() {
+    this.props.getBooks();
     // GET IMAGES FROM API
     axios.get('/api/images')
     .then(function(response) {
@@ -31,6 +32,7 @@ class BooksForm extends React.Component {
     const book = [{
       title: findDOMNode(this.refs.title).value,
       description: findDOMNode(this.refs.description).value,
+      images: findDOMNode(this.refs.image).value,
       price: findDOMNode(this.refs.price).value
     }]
     this.props.postNewBooks(book);  
@@ -41,13 +43,20 @@ class BooksForm extends React.Component {
     this.props.deleteBooks(bookId);
   }
 
+  handleSelect(img) {
+    this.setState({
+      img: '/images/' + img
+    });
+  }
+
   render(){
 
     const imgList = this.state.images.map(function(imgArr, i) {
       return( 
-        <MenuItem key={i} eventKey={imgArr.name}>{imgArr.name}</MenuItem>
+        <MenuItem key={i} eventKey={imgArr.name}
+          onClick={this.handleSelect.bind(this, imgArr.name)}>{imgArr.name}</MenuItem>
       )
-    }) 
+    }, this) // anytime you bind you need to pass a reference to this
 
     const booksList = this.props.books.map(function(booksArr) {
       return(
@@ -58,10 +67,10 @@ class BooksForm extends React.Component {
     return(
       <Well>
         <Row>
-          <Col>
+          <Col xs={12} sm={6}>
             <Panel>
               <InputGroup>
-                <FormControl type="text" ref="image" value="" />
+                <FormControl type="text" ref="image" value={this.state.img} />
                 <DropdownButton
                   componentClass={InputGroup.Button}
                   id="input-dropdown-addon"
@@ -70,10 +79,10 @@ class BooksForm extends React.Component {
                   {imgList}
                 </DropdownButton>
               </InputGroup>
-              <Image src="" responsive />
+              <Image src={this.state.img} responsive />
             </Panel>
           </Col>
-          <Col>
+          <Col xs={12} sm={6}>
             <Panel>
               <FormGroup controlId="title">
                 <ControlLabel>Title</ControlLabel>
@@ -81,15 +90,15 @@ class BooksForm extends React.Component {
                   type="text"
                   placeholder="Enter Title"
                   ref="title" />
-                </FormGroup>
+              </FormGroup>
               <FormGroup controlId="description">
                 <ControlLabel>Description</ControlLabel>
                   <FormControl
                   type="text"
                   placeholder="Enter Description"
                   ref="description" />
-                </FormGroup>
-                <FormGroup controlId="price">
+              </FormGroup>
+              <FormGroup controlId="price">
                   <ControlLabel>Price</ControlLabel>
                 <FormControl
                 type="text"
@@ -126,7 +135,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     postNewBooks,
-    deleteBooks
+    deleteBooks,
+    getBooks
   }, dispatch)
 }
 
