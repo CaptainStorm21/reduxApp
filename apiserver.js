@@ -116,7 +116,9 @@ app.get('/images', function(req, res) {
     }
     const filesArr = [];
     files.forEach(function(file) {
-      filesArr.push({name: file});
+      if(! /^\..*/.test(file)) {
+        filesArr.push({name: file});
+      }
     });
     // send json response
     res.json(filesArr);
