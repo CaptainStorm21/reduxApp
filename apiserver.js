@@ -82,7 +82,7 @@ app.delete('/books/:_id', function (req, res) {
 // UPDATE
 app.put('/books/:_id', function (req, res) {
   var book = req.body;
-  var query = req.params._id
+  var query = req.params._id;
   // if the field doesn't exist, $set will set a new field
   var update = {
     '$set':{
@@ -101,6 +101,25 @@ app.put('/books/:_id', function (req, res) {
       throw err;
     }
     res.json(books);
+  })
+})
+
+// BOOKS IMAGES API
+app.get('/images', function(req, res) {
+  // FILE SYSTEM
+  const imgFolder = __dirname + '/public/images/';
+  const fs = require('fs');
+  // READ ALL FILES IN DIR
+  fs.readdir(imgFolder, function(err, files) {
+    if(err) {
+      return console.error(err);
+    }
+    const filesArr = [];
+    files.forEach(function(file) {
+      filesArr.push({name: file});
+    });
+    // send json response
+    res.json(filesArr);
   })
 })
 
