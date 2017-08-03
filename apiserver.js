@@ -110,5 +110,5 @@ app.listen(3001, function (err) {
   if (err) {
     return console.log(err);
   }
-  console.log("api srver is listening on port http://localhost:3001")
+  console.log("API server listening at http://localhost:3001")
 })
