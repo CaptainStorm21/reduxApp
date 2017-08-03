@@ -1,6 +1,18 @@
 "use strict"
 import axios from 'axios';
 
+export function addToCart(cart) {
+  return function(dispatch) {
+    axios.post("/api/cart", cart)
+      .then(function(response) {
+        dispatch({type:"ADD_TO_CART", payload:response.data})
+      })
+      .catch(function(err) {
+        dispatch({type:"ADD_TO_CART_REJECTED", msg:'error when adding to cart'})
+      })
+  }
+}
+
 export function updateCart(_id, unit, cart) {
   const currentBookToUpdate = cart;
   // Determine index of book to update
@@ -17,20 +29,13 @@ export function updateCart(_id, unit, cart) {
 
   let cartUpdate = [...currentBookToUpdate.slice(0, indexToUpdate), newBookToUpdate,
   ...currentBookToUpdate.slice(indexToUpdate + 1)];
-  return {
-    type: "UPDATE_CART",
-    payload: cartUpdate
-  }
-}
-
-export function addToCart(cart) {
   return function(dispatch) {
-    axios.post("/api/cart", cart)
+    axios.post("/api/cart", cartUpdate)
       .then(function(response) {
-        dispatch({type:"ADD_TO_CART", payload:response.data})
+        dispatch({type:"UPDATE_CART", payload:response.data})
       })
       .catch(function(err) {
-        dispatch({type:"ADD_TO_CART_REJECTED", msg:'error when adding to cart'})
+        dispatch({type:"UPDATE_CART_REJECTED", msg:'error when updating to cart'})
       })
   }
 }
